@@ -1,0 +1,94 @@
+/*================================================================================
+	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Version: 2.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+
+.alert {
+    border: 0;
+    border-radius: 0;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.alert span[data-notify="icon"] {
+    font-size: 30px;
+    display: block;
+    left: 15px;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+}
+
+.alert i.nc-simple-remove {
+    font-size: 12px !important;
+    font: bold normal normal 14px/1 'nucleo-icons';
+}
+
+.alert button.close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -13px;
+    z-index: 1033;
+    background-color: #FFFFFF;
+    display: block;
+    border-radius: 50%;
+    opacity: .4;
+    line-height: 9px;
+    width: 25px;
+    height: 25px;
+    outline: 0 !important;
+    text-align: center;
+    padding: 3px;
+    font-weight: 300;
+}
+
+.alert button.close:hover {
+    opacity: .55;
+}
+
+.alert .close~span {
+    display: block;
+    max-width: 89%;
+}
+
+.alert[data-notify="container"] {
+    padding: 10px 10px 10px 20px;
+    border-radius: 4px;
+}
+
+.alert.alert-with-icon {
+    padding-left: 65px;
+}
+
+.alert-primary {
+    background-color: #4091e2;
+}
+
+.alert-info {
+    background-color: #63d8f1;
+}
+
+.alert-success {
+    background-color: #a1e82c;
+}
+
+.alert-warning {
+    background-color: #ffbc67;
+}
+
+.alert-danger {
+    background-color: #fc727a;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b { border:1px solid #d8d6de!important; border-style:none !important; border-width:0!important; height: 40px!important; left:0!important; margin-left:0!important; margin-top:0!important; }
+.select2-container--default .select2-selection--single { border:1px solid #d8d6de!important; }
