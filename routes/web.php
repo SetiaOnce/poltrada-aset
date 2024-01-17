@@ -57,51 +57,53 @@ Route::group(['prefix' => 'select'], function () {
 //  ===========>> SELECT END <<============== //
 
 // App Admin
-Route::group(['prefix' => 'app_admin'], function () {
-    Route::get('/dashboard', function () {
-        Artisan::call('cache:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
-        if(!session()->get('login_akses')) { 
-            return redirect('/login'); 
-        } 
-        $data['header_title'] = 'DASHBOARD';
-        return view('backend.index', $data);
-    });
-    Route::get('/user_profile', function () {
-        if(!session()->get('login_akses')) { 
-            return redirect('/login'); 
-        } 
-        $data['header_title'] = 'USER PROFILE';
-        return view('backend.common.profile', $data);
-    });
-    //  ===========>> CUMMON  <<============== //
-    Route::get('/load_user_profile', [CommonController::class, 'loaduserProfile']);
-    Route::get('/load_profile', [CommonController::class, 'loadProfile']);
-    Route::get('/load_app_profile_site', [CommonController::class, 'loadProfileApp']);
-    Route::post('/ajax_upload_imgeditor', [CommonController::class, 'upload_imgeditor'])->name('upload_imgeditor');
-    Route::get('/download-mastering-excel', [CommonController::class, 'downloadDataMastering'])->name('mastering-excel-download');
-    Route::get('/download-template-data-aset', [CommonController::class, 'downloadTemplateData'])->name('mastering-template-data-aset');
-    Route::get('/get_data_aset_on_select', [CommonController::class, 'getDatAset']);
-    Route::get('/load_first_widget', [CommonController::class, 'LoadFirstWidget']);
-    Route::get('/load_trend_pengadaan', [CommonController::class, 'trendPengadaan']);
-    Route::get('/load_trend_pendataan', [CommonController::class, 'trendPendataan']);
-    //  ===========>> END COMMON <<============== //
+Route::group(['middleware' => 'Session'], function() {
+    Route::group(['prefix' => 'app_admin'], function () {
+        Route::get('/dashboard', function () {
+            Artisan::call('cache:clear');
+            Artisan::call('config:clear');
+            Artisan::call('view:clear');
+            if(!session()->get('login_akses')) { 
+                return redirect('/login'); 
+            } 
+            $data['header_title'] = 'DASHBOARD';
+            return view('backend.index', $data);
+        });
+        Route::get('/user_profile', function () {
+            if(!session()->get('login_akses')) { 
+                return redirect('/login'); 
+            } 
+            $data['header_title'] = 'USER PROFILE';
+            return view('backend.common.profile', $data);
+        });
+        //  ===========>> CUMMON  <<============== //
+        Route::get('/load_user_profile', [CommonController::class, 'loaduserProfile']);
+        Route::get('/load_profile', [CommonController::class, 'loadProfile']);
+        Route::get('/load_app_profile_site', [CommonController::class, 'loadProfileApp']);
+        Route::post('/ajax_upload_imgeditor', [CommonController::class, 'upload_imgeditor'])->name('upload_imgeditor');
+        Route::get('/download-mastering-excel', [CommonController::class, 'downloadDataMastering'])->name('mastering-excel-download');
+        Route::get('/download-template-data-aset', [CommonController::class, 'downloadTemplateData'])->name('mastering-template-data-aset');
+        Route::get('/get_data_aset_on_select', [CommonController::class, 'getDatAset']);
+        Route::get('/load_first_widget', [CommonController::class, 'LoadFirstWidget']);
+        Route::get('/load_trend_pengadaan', [CommonController::class, 'trendPengadaan']);
+        Route::get('/load_trend_pendataan', [CommonController::class, 'trendPendataan']);
+        //  ===========>> END COMMON <<============== //
 
-    // for handle redirect data master
-    Route::group(['prefix' => 'master'], function () {
-        // for redirect page
-        Route::get('/jenis_asets', [MasterJenisAsetController::class, 'index']);
-        Route::get('/satuan_aset', [MasterSatuanAsetController::class, 'index']);
-        Route::get('/status_aset', [MasterStatusAsetController::class, 'index']);
-    });
+        // for handle redirect data master
+        Route::group(['prefix' => 'master'], function () {
+            // for redirect page
+            Route::get('/jenis_asets', [MasterJenisAsetController::class, 'index']);
+            Route::get('/satuan_aset', [MasterSatuanAsetController::class, 'index']);
+            Route::get('/status_aset', [MasterStatusAsetController::class, 'index']);
+        });
 
-    // for handle redirect page
-    Route::get('/profile_app', [ProfileAppController::class, 'index']);
-    Route::get('/data_aset', [DataAsetController::class, 'index']);
-    Route::get('/perawatan_aset', [PerawatanAsetController::class, 'index']);
-    Route::get('/pemeriksaan_aset', [PemeriksaanAsetController::class, 'index']);
-    Route::get('/penghapusan_aset', [PenghapusanAsetController::class, 'index']);
+        // for handle redirect page
+        Route::get('/profile_app', [ProfileAppController::class, 'index']);
+        Route::get('/data_aset', [DataAsetController::class, 'index']);
+        Route::get('/perawatan_aset', [PerawatanAsetController::class, 'index']);
+        Route::get('/pemeriksaan_aset', [PemeriksaanAsetController::class, 'index']);
+        Route::get('/penghapusan_aset', [PenghapusanAsetController::class, 'index']);
+    });
 });
 
 // for handle ajax profile app
